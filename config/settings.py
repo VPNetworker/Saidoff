@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from decouple import config
+from django.middleware.csrf import CSRF_ALLOWED_CHARS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +40,13 @@ INSTALLED_APPS = [
     # built in apps
     'main',
 ]
+CORS_ALLOWED_ORIGINS = [
+    'http://backend.saidoff.uz',
+    'https://backend.saidoff.uz',
+    # Add any other front-end origins
+]
+
+CSRF_ALLOWED_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
