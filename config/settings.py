@@ -206,7 +206,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://backend.saidoff.uz',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://backend.saidoff.uz',
 ]
