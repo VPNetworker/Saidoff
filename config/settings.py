@@ -121,6 +121,8 @@ STATIC_ROOT = BASE_DIR / 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+SITE_DOMAIN = 'https://backend.saidoff.uz'
+
 
 LANGUAGES = (
     ('uz', 'Uzbekistan'),
