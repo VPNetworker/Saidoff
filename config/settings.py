@@ -40,16 +40,11 @@ INSTALLED_APPS = [
     # built in apps
     'main',
 ]
-CORS_ALLOWED_ORIGINS = [
-    'http://backend.saidoff.uz',
-    'https://backend.saidoff.uz',
-    # Add any other front-end origins
-]
-
 
 CSRF_ALLOWED_ALL = True
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -201,6 +196,31 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'main.pagination.PageNumberPagination',
     'PAGE_SIZE': 9,
 }
+
+#new settings
+
+CORS_ALLOWED_ORIGINS = [
+    'http://backend.saidoff.uz',
+    'https://backend.saidoff.uz',
+    'http://localhost:3000',
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS',
+]
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrf-token',
+    'x-requested-with',
+]
+
 
 
 REST_FRAMEWORK = {
