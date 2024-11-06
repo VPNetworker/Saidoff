@@ -46,6 +46,7 @@ CORS_ALLOWED_ORIGINS = [
     # Add any other front-end origins
 ]
 
+
 CSRF_ALLOWED_ALL = True
 
 MIDDLEWARE = [
@@ -201,3 +202,23 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 9,
 }
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Or JWT Authentication
+    ],
+}
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        },
+    },
+}
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
