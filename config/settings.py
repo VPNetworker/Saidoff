@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'main',
 ]
 
-CSRF_ALLOWED_ALL = True
+# CSRF_ALLOWED_ALL = True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
