@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'main',
 ]
 
-# CSRF_ALLOWED_ALL = True
+CSRF_ALLOWED_ALL = True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -201,16 +201,16 @@ REST_FRAMEWORK = {
 
 #new settings
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://backend.saidoff.uz',
-#     'https://backend.saidoff.uz',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://backend.saidoff.uz',
+    'https://backend.saidoff.uz',
+]
 
-# CORS_ALLOW_ALL_ORIGINS = True
-# # CSRF_TRUSTED_ORIGINS = [
-# #     'http://backend.saidoff.uz',
-# # ]
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://backend.saidoff.uz',
+# ]
+CORS_ALLOW_CREDENTIALS = True
 # CORS_ALLOW_METHODS = [
 #     'GET',
 #     'POST',
@@ -244,5 +244,5 @@ REST_FRAMEWORK = {
 #     },
 # }
 
-# USE_X_FORWARDED_HOST = True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
