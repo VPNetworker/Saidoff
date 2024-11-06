@@ -201,12 +201,12 @@ REST_FRAMEWORK = {
 
 #new settings
 
-CORS_ALLOWED_ORIGINS = [
-    'http://backend.saidoff.uz',
-    'https://backend.saidoff.uz',
-]
+# CORS_ALLOWED_ORIGINS = [
+    # 'http://backend.saidoff.uz',
+    # 'https://backend.saidoff.uz',
+# ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://backend.saidoff.uz',
 ]
