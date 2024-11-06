@@ -201,14 +201,15 @@ REST_FRAMEWORK = {
 
 #new settings
 
-# CORS_ALLOWED_ORIGINS = [
-    # 'http://backend.saidoff.uz',
-    # 'https://backend.saidoff.uz',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://backend.saidoff.uz',
+    'https://backend.saidoff.uz',
+]
 
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://backend.saidoff.uz',
+    'http://a.saidoff.uz/'
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
@@ -218,12 +219,12 @@ CORS_ALLOW_METHODS = [
     'DELETE',
     'OPTIONS',
 ]
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-    'x-csrf-token',
-    'x-requested-with',
-]
+# CORS_ALLOW_HEADERS = [
+#     'content-type',
+#     'authorization',
+#     'x-csrf-token',
+#     'x-requested-with',
+# ]
 
 
 
@@ -244,5 +245,5 @@ SWAGGER_SETTINGS = {
     },
 }
 
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# USE_X_FORWARDED_HOST = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
