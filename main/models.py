@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from config.settings import DEFAULT_SITE_URL
 
 class TimeStamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -42,8 +41,6 @@ class Team(TimeStamp):
     image = models.ImageField(upload_to='team/')
     description = models.TextField()
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
     def __str__(self):
         return self.full_name
@@ -52,16 +49,12 @@ class Team(TimeStamp):
 class Partnership(TimeStamp):
     image = models.FileField(upload_to='partnership/')
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
 class Certificate(TimeStamp):
     title = models.CharField(_("title"), max_length=212)
     information = models.TextField(_("information"))
     image = models.ImageField(upload_to='certificate/')
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
     def __str__(self):
         return self.title
@@ -73,8 +66,6 @@ class ClientsFeedback(TimeStamp):
     profession = models.CharField(_("profession"), max_length=212)
     message = models.TextField(_("message"))
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
     def __str__(self):
         return self.full_name
@@ -86,8 +77,6 @@ class ServiceInfo(TimeStamp):
     description = models.TextField(_("description"))
     services = models.ForeignKey('Services', on_delete=models.CASCADE, related_name='service_info')
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
     def __str__(self):
         return self.title
@@ -118,8 +107,6 @@ class Projects(TimeStamp):
     link = models.URLField(null=True, blank=True)
     tags = models.ManyToManyField(Tag)
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
     def __str__(self):
         return self.title
@@ -129,8 +116,6 @@ class SocialMedia(TimeStamp):
     icon = models.ImageField(upload_to='social_media/')
     link = models.URLField(null=True, blank=True)
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.icon}'
 
 class FAQType(TimeStamp):
     title = models.CharField(_("title"), max_length=212)
@@ -150,8 +135,6 @@ class About(TimeStamp):
     image = models.ImageField(upload_to='about/')
     description = models.TextField(_("description"))
 
-    def get_image(self):
-        return f'{DEFAULT_SITE_URL}/{self.image}'
 
     def __str__(self):
         return self.title

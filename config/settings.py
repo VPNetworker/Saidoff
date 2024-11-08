@@ -40,17 +40,13 @@ INSTALLED_APPS = [
     # built in apps
     'main',
 ]
-CORS_ALLOWED_ORIGINS = [
-    'http://backend.saidoff.uz',
-    'https://backend.saidoff.uz',
-    # Add any other front-end origins
-]
 
 CSRF_ALLOWED_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -190,14 +186,20 @@ JAZZMIN_SETTINGS = {
 }
 
 
-LANGUAGES = (
-    ('uz', 'Uzbekistan'),
-    ('ru', 'Russian'),
-    ('en', 'English'),
-)
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'main.pagination.PageNumberPagination',
     'PAGE_SIZE': 9,
 }
 
+# new settings
+
+BASE_URL = 'http://back.saidoff-academy.uz'
+CSRF_TRUSTED_ORIGINS = [BASE_URL]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ["*"]
+CORS_ALLOW_HEADERS = ["*"]
+# Application definition
+SWAGGER_SETTINGS = {
+    'DEFAULT_API_URL': BASE_URL,
+}
