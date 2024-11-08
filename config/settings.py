@@ -193,7 +193,7 @@ REST_FRAMEWORK = {
 
 # new settings
 
-BASE_URL = 'http://back.saidoff-academy.uz'
+BASE_URL = 'http://backend.saidoff.uz/'
 CSRF_TRUSTED_ORIGINS = [BASE_URL]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
