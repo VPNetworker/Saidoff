@@ -189,9 +189,15 @@ JAZZMIN_SETTINGS = {
     "language_chooser": False,
 }
 
+
+LANGUAGES = (
+    ('uz', 'Uzbekistan'),
+    ('ru', 'Russian'),
+    ('en', 'English'),
+)
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'main.pagination.PageNumberPagination',
     'PAGE_SIZE': 9,
 }
 
-DEFAULT_SITE_URL='http://backend.saidoff.uz/'

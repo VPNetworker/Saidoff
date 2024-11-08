@@ -12,7 +12,7 @@ ENV PYTHONUNBUFFERED 1
 LABEL authors="alimardon"
 MAINTAINER "Alimardon"
 # Bu qator, Docker konteynerida ishlaydigan ishchi katalogini /app sifatida sozlaydi. Keyingi amallar bu katalogda amalga oshiriladi.
-WORKDIR app
+WORKDIR /app
 
 # Bu qator, mahalliy requirements.txt faylini Docker konteyneriga ko'chiradi. Bu, Python kerakli modullarini Docker konteyneriga o'rnatish uchun ishlatiladi.
 COPY requirements.txt /app

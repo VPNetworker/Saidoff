@@ -13,8 +13,8 @@ build_job:
     - docker push ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
     - docker tag ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID}
     - docker push ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID}
-    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
-    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID}
+    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest || true
+    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID} || true
 
 deploy_prod_job:
   stage: deploy_prod
@@ -31,7 +31,7 @@ deploy_prod_job:
         docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD &&
         docker pull ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest && 
         docker rm -f ${CI_PROJECT_NAME} || true &&
-        docker run -dp 8001:8000 -v /home/alimardon/saidoff_academy/prod/media:/app/media -v /home/alimardon/saidoff_academy/prod/db.sqlite3:/app/db.sqlite3 -v /var/www/backend/saidoff_group/.env:/app/.env --name ${CI_PROJECT_NAME} --restart unless-stopped ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
+        docker run -dp 8001:8000 -v /var/www/backend/saidoff_group/prod/media:/app/media -v /var/www/backend/saidoff_group/prod/db.sqlite3:/app/db.sqlite3 -v /var/www/backend/saidoff_group/.env:/app/.env --name ${CI_PROJECT_NAME} --restart unless-stopped ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
       "
 deploy_dev_job:
   when: manual
@@ -49,5 +49,5 @@ deploy_dev_job:
         docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD &&
         docker pull ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest && 
         docker rm -f ${CI_PROJECT_NAME} || true &&
-        docker run -dp 8001:8000 -v /home/alimardon/saidoff_academy/prod/media:/app/media -v /home/alimardon/saidoff_academy/prod/db.sqlite3:/app/db.sqlite3 -v /var/www/backend/saidoff_group/.env:/app/.env --name ${CI_PROJECT_NAME} --restart unless-stopped ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
+        docker run -dp 8001:8000 -v /var/www/backend/saidoff_group/prod/media:/app/media -v /var/www/backend/saidoff_group/prod/db.sqlite3:/app/db.sqlite3 -v /var/www/backend/saidoff_group/.env:/app/.env --name ${CI_PROJECT_NAME} --restart unless-stopped ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
       "
