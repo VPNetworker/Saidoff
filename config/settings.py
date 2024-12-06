@@ -193,7 +193,7 @@ REST_FRAMEWORK = {
 
 # new settings
 
-BASE_URL = 'http://backend.saidoff.uz/'
+BASE_URL = 'https://back.saidoff.uz/'
 CSRF_TRUSTED_ORIGINS = [BASE_URL]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
