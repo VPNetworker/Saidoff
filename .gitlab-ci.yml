@@ -1,26 +1,33 @@
+image:
+  name: docker:20.10.16
+
+services:
+  - docker:20.10.16-dind
+
 stages:
   - build
   - deploy_prod
   - deploy_dev
+
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
+
 before_script:
   docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+
 build_job:
   stage: build
-  tags:
-    - docker
   script:
     - docker build -t ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest .
     - docker push ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
     - docker tag ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID}
     - docker push ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID}
-    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest || true
-    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID} || true
+    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
+    - docker rmi ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_PIPELINE_IID}
     - docker image prune -f || true
 
 deploy_prod_job:
   stage: deploy_prod
-  tags:
-    - docker
   only:
     - main
   script:
@@ -31,14 +38,13 @@ deploy_prod_job:
     - ssh -o StrictHostKeyChecking=no ${USER}@${IP} "
         docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD &&
         docker pull ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest && 
-        docker rm -f ${CI_PROJECT_NAME} || true &&
-        docker run -dp 8001:8000 -v /var/www/backend/saidoff_group/prod/media:/app/media -v /var/www/backend/saidoff_group/prod/db.sqlite3:/app/db.sqlite3 -v /var/www/backend/saidoff_group/.env:/app/.env --name ${CI_PROJECT_NAME} --restart unless-stopped ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
+        docker service update --force academy_back &&
+        docker container prune -f || true && 
+        docker image prune -f || true
       "
 deploy_dev_job:
   when: manual
   stage: deploy_dev
-  tags:
-    - docker
   only:
     - staging
   script:
@@ -48,7 +54,8 @@ deploy_dev_job:
     - chmod 700 ~/.ssh
     - ssh -o StrictHostKeyChecking=no ${USER}@${IP} "
         docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD &&
-        docker pull ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest && 
-        docker rm -f ${CI_PROJECT_NAME} || true &&
-        docker run -dp 8001:8000 -v /var/www/backend/saidoff_group/prod/media:/app/media -v /var/www/backend/saidoff_group/prod/db.sqlite3:/app/db.sqlite3 -v /var/www/backend/saidoff_group/.env:/app/.env --name ${CI_PROJECT_NAME} --restart unless-stopped ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
+        docker pull ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest &&
+        docker service update --force academy_back &&
+        docker container prune -f || true && 
+        docker image prune -f || true
       "
