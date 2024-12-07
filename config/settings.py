@@ -201,5 +201,14 @@ CORS_ALLOW_METHODS = ["*"]
 CORS_ALLOW_HEADERS = ["*"]
 # Application definition
 SWAGGER_SETTINGS = {
-    'DEFAULT_API_URL': BASE_URL,
+    'USE_SESSION_AUTH': True,
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        }
+    },
+    'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
+    'DEFAULT_URL': 'https://back.saidoff.uz/api/v1',
+    'DEFAULT_SCHEME': 'https',
 }
+
