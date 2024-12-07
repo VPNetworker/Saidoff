@@ -205,7 +205,6 @@ CORS_ALLOW_HEADERS = ["*"]
 
 # Swagger sozlamalari
 SWAGGER_SETTINGS = {
-    'DEFAULT_API_URL': BASE_URL,
-    'DEFAULT_SCHEMES': ['https', 'http'],
+    'DEFAULT_API_URL': BASE_URL
 }
 

@@ -13,9 +13,9 @@ BASE_URL = config('BASE_URL')
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Saidoff Group API",
+        title="Saidoff Portfolio API",
         default_version='v1',
-        description="Test description",
+        description="Swagger for getting data for saidoff.uz",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="saidoffgroup@gmail.com"),
         license=openapi.License(name="MIT License"),
