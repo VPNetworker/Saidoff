@@ -193,23 +193,17 @@ REST_FRAMEWORK = {
 
 # new settings
 
-BASE_URL = 'https://back.saidoff.uz/'
+BASE_URL = config('BASE_URL')
+
+# CORS va CSRF sozlamalari
 CSRF_TRUSTED_ORIGINS = [BASE_URL]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ["*"]
 CORS_ALLOW_HEADERS = ["*"]
 
-
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
-
-
-# Application definition
+# Swagger sozlamalari
 SWAGGER_SETTINGS = {
-    'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
-    'DEFAULT_URL': 'https://back.saidoff.uz/api/v1',
-    'DEFAULT_SCHEME': 'https',
+    'DEFAULT_API_URL': BASE_URL,
 }
 
