@@ -202,10 +202,9 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ["*"]
 CORS_ALLOW_HEADERS = ["*"]
 
-print('BASE_URL', BASE_URL)
-
 # Swagger sozlamalari
 SWAGGER_SETTINGS = {
     'DEFAULT_API_URL': BASE_URL,
+    'DEFAULT_SCHEMES': ['https', 'http'],
 }
 
