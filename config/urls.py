@@ -7,9 +7,6 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.views.static import serve
-from decouple import config
-
-BASE_URL = config('BASE_URL')
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -21,7 +18,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="MIT License"),
     ),
     public=True,
-    url=BASE_URL
+    url=settings.BASE_URL
 )
 
 urlpatterns = [
