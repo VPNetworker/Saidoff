@@ -40,6 +40,10 @@ class Team(TimeStamp):
     occupation = models.CharField(max_length=212)
     image = models.ImageField(upload_to='team/')
     description = models.TextField()
+    order = models.PositiveIntegerField(null=True, unique=True)
+
+    class Meta:
+        ordering = ['order']
 
 
     def __str__(self):
@@ -106,6 +110,10 @@ class Projects(TimeStamp):
     image = models.ImageField(upload_to='project/')
     link = models.URLField(null=True, blank=True)
     tags = models.ManyToManyField(Tag)
+    order = models.PositiveIntegerField(null=True, unique=True)
+
+    class Meta:
+        ordering = ['order']
 
 
     def __str__(self):

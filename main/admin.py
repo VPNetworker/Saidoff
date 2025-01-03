@@ -43,7 +43,7 @@ class ServicesAdmin(admin.ModelAdmin):
 
 @admin.register(Projects)
 class ProjectsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'link')
+    list_display = ('id', 'title', 'link', 'order')
     list_display_links = ('id', 'title',)
     search_fields = ('title',)
 
@@ -73,7 +73,7 @@ class SubscribeAdmin(admin.ModelAdmin):
 
 @admin.register(Team)
 class TeamAdmin(TranslationAdmin):
-    list_display = ('id', 'full_name', 'occupation',)
+    list_display = ('id', 'full_name', 'occupation', 'order')
     list_display_links = ('id', 'full_name', 'occupation',)
     search_fields = ('full_name',)
     list_filter = ('occupation',)

@@ -59,7 +59,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Services
-        fields = ['id', 'title_uz', 'title_ru', 'title_ru', 'title_en', 'service_info']
+        fields = ['id', 'title', 'service_info', ]
 
 
 class ServiceTypeSerializer(serializers.ModelSerializer):
@@ -73,7 +73,7 @@ class TeamSerializer(serializers.ModelSerializer):
         model = Team
         fields = [
             'id', 'full_name', 'occupation_uz', 'occupation_ru', 'occupation_en', 'image', 'description_uz',
-            'description_ru', 'description_en'
+            'description_ru', 'description_en',
         ]
 
 
@@ -113,12 +113,12 @@ class FAQSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    services = ServiceSerializer(read_only=True)
+    # services = ServiceSerializer(read_only=True)
 
     class Meta:
         model = Order
         fields = [
-            'full_name', 'phone_number', 'services'
+            'full_name', 'phone_number', 'message', 'services'
         ]
 
 
